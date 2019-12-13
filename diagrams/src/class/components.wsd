@@ -1,0 +1,65 @@
+@startuml
+
+class Component{
+    +isVisible(): boolean
+}
+
+
+class CGovField {
+
+    -theField: WebElement
+
+    +CGovField(field WebElement)
+    +setFocus(): void
+}
+CGovField <|-- Component
+
+class TextField {
+    +TextField(field WebElement)
+
+    +enterText(text: string): void
+    +hitEnter(): void
+}
+TextField <|-- CGovField
+
+class CheckBox {
+    +CheckBox(field WebElement)
+
+    +click(): void
+    +isSelected(): boolean
+}
+CheckBox <|-- CGovField
+
+class Button {
+    +Button(field WebElement)
+
+    click(): void
+}
+Button <|-- CGovField
+
+class AutoSuggestField {
+    +AutoSuggestField(field WebElement)
+
+    +selectItem(text: string): void
+}
+AutoSuggestField <|-- TextField
+
+
+class Accordian {
+}
+Accordian <|-- Component
+
+
+class Delighter {
+}
+Delighter <|-- Component
+
+class ErrorDisplay{
+}
+ErrorDisplay <|-- Component
+
+class Pager{
+}
+Pager <|-- Component
+
+@enduml

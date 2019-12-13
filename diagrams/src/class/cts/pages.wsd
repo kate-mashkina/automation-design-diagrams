@@ -1,0 +1,92 @@
+@startuml
+
+class PageObjectBase {
+
+    -browser: WebDriver
+    -config: Confguration
+    -wait: WebDriverWait
+
+    +PageObjectBase(path: string)
+    #PageObjectBase()
+
+    +getPageUrl(): ParsedURL
+    +getPageTitle(): string
+    +expectUrlChange(IPageChangeAction action): void
+
+    #getBrowser(): WebDriver
+}
+
+'' This is actually a public, nested class inside PageObjectBase
+interface IPageChangeAction {
+    operation(): void
+}
+
+package cts {
+
+
+    '' General cts page functionality (Mainly "is the react app running?")
+    class CTSPage {
+        isHeaderDisplayed(): boolean
+    }
+    CTSPage <|-- PageObjectBase
+
+    class cts.BasicSearchPage {
+        -age: TextField
+        -zipCode: TextField
+        -keywordText: AutoSuggestField
+        -searchButton: Button
+        -zipAlert: Something
+        -ageAlert: Something
+
+        +BasicSearchPage(WebElement)
+
+        +getAgeField(): TextField
+        +getZipCodeField(): TextField
+        +getKeywordField(): AutoSuggestField
+        +getSearchButton(): Button
+        +getZipAlert(): Something
+        +getAgeAlert(): Something
+
+        +hitEnterOnField(field: TextField): cts.SearchNavigationResult
+    }
+    cts.BasicSearchPage <|-- CTSPage
+
+    class cts.AdvancedSearchPage {
+
+    }
+    cts.AdvancedSearchPage <|-- CTSPage
+
+    class cts.SearchResultsPage {
+
+    }
+    cts.SearchResultsPage <|-- CTSPage
+
+    class cts.TrialDetailsPage {
+
+    }
+    cts.TrialDetailsPage <|-- CTSPage
+
+
+    class cts.SearchNavigationResult {
+        +cts.SearchNavigationResult(browser: WebDriver)
+
+        +getAgeParameter(): string
+        +getZipParameter(): string
+        +getKeywordParameter(): string
+        +getCancerType(): string[]
+        +getResultListType(): int
+    }
+
+}
+
+cts.SearchNavigationResult <|-- NavigationResult
+
+
+class NavigationResult {
+    +NavigationResult(browser: WebDriver)
+ 
+    +getPageUrl(): ParsedURL
+    +getParameterValue(name: string): string
+}
+
+@enduml

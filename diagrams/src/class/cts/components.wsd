@@ -1,0 +1,53 @@
+@startuml
+
+'' Cancer type - advanced search
+class cts.components.CancerTypeSection {
+    +getType(): FieldTypeTBD
+    +getSubType(): Autosuggest
+    +getStage(): Autosuggest
+    +getSideEffects(): Autosuggest
+}
+
+'' Criteria display - search results and trial description
+class cts.components.CriteriaSection {
+}
+
+'' Drugs/Treatment section -- advanced search
+class cts.components.DrugTreatmentSection {
+}
+
+'' Location -- advanced search
+class cts.components.LocationSection {
+}
+
+'' Floating Find/Clear buttons -- advanced search
+class cts.components.FormAction {
+}
+
+'' Trial phase list section -- advanced search
+class cts.components.TrialPhaseSection {
+}
+
+'' Trial type section -- advanced search
+class cts.components.TrialTypeSection {
+}
+
+'' Search results list -- search results page
+class cts.components.ResultListSection {
+}
+
+'' Single search result item -- search results page
+class cts.components.ResultItem {
+}
+
+cts.components.CancerTypeSection <|-- Component
+cts.components.CriteriaSection <|-- Component
+cts.components.DrugTreatmentSection <|-- Component
+cts.components.LocationSection <|-- Component
+cts.components.FormAction <|-- Component
+cts.components.TrialPhaseSection <|-- Component
+cts.components.TrialTypeSection <|-- Component
+cts.components.ResultListSection <|-- Component
+cts.components.ResultItem <|-- Component
+
+@enduml
