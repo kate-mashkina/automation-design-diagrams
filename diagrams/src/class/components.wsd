@@ -4,7 +4,6 @@ class Component{
     +isVisible(): boolean
 }
 
-
 class CGovField {
 
     -theField: WebElement
@@ -37,6 +36,13 @@ class Button {
 }
 Button <|-- CGovField
 
+class RadioButton {
+    +radioButton(field WebElement)
+
+    click(): void
+}
+RadioButton <|-- CGovField
+
 class AutoSuggestField {
     +AutoSuggestField(field WebElement)
 
@@ -44,22 +50,34 @@ class AutoSuggestField {
 }
 AutoSuggestField <|-- TextField
 
-
 class Accordian {
+    +getTitle() : String
+    +getDecription() : BlobOfText
+    +isExpanded() : boolean
 }
 Accordian <|-- Component
 
-
 class Delighter {
++isIconDisplayed() : boolean
++getLinkTitle() : String
++getLink() : Link
+
 }
 Delighter <|-- Component
 
 class ErrorDisplay{
++ErrorDisplay (scope Webelement)
+
++getMessage() : String
 }
 ErrorDisplay <|-- Component
 
 class Pager{
+
++getNumberOfPages() : int
+
 }
 Pager <|-- Component
 
 @enduml
+

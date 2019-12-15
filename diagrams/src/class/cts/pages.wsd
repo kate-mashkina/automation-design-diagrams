@@ -23,7 +23,6 @@ interface IPageChangeAction {
 
 package cts {
 
-
     '' General cts page functionality (Mainly "is the react app running?")
     class CTSPage {
         isHeaderDisplayed(): boolean
@@ -52,20 +51,79 @@ package cts {
     cts.BasicSearchPage <|-- CTSPage
 
     class cts.AdvancedSearchPage {
+        - cancerTypeSection : CancerTypeSection
+        - age : TextField
+        - keyword : TextField
+        - locationSection : LocationSection
+        - trialTypeSection : TrialTypeSection
+        - trialPhaseSection : TrialPhaseSection
+        - drugTreatmentSection : DrugTreatmentSection
+        - trialId : TextField
+        - trialInvestigators : Autosuggest
+        - leadOrganization : Autosuggest
+        - formAction : FormAction
+
+        +getCancerTypeSection(): CancerTypeSection
+        +getAgeField(): TextField
+        +getKeywordField(): TextField
+        +getLocationSection(): LocationSection
+        +getTrialTypeSection(): TrialTypeSection
+        +getDrugTreatmentSection(): DrugTreatmentSection
+        +getTrialPhaseSection(): TrialPhaseSection
+        +getTrialID(): TextField
+        +getTrialInvestigators(): Autosuggest
+        +getLeadOrganization(): Autosuggest
+        +getFormAction(): FormAction
 
     }
     cts.AdvancedSearchPage <|-- CTSPage
 
     class cts.SearchResultsPage {
+        -resultListSection : ResultListSection
+        -criteriaSection : CriteriaSection
+        -startOverLink : Link
+        -modifySearchCriteriaButton : Button
+        -selectAllOnPage : CheckBox
+        -printSelected : Button
+        -pager : Pager
+
+        +getResultListSection(): ResultListSection
+        +getCriteriaSection(): CriteriaSection
+        +getStartOver(): Link
+        +getModifySearchCriteria(): Button
+        +getSelectAllOnPage(): CheckBox
+        +getPrintSelected(): Button
+        +getPager(): Pager
+
 
     }
     cts.SearchResultsPage <|-- CTSPage
 
     class cts.TrialDetailsPage {
+        -criteriaSection : CriteriaSection
+        -startOverLink : Link
+        -trialStatus : WebElement
+        -openAll : Button
+        -closeAll : Button
+        -accordion : Accordion
+        -shareDelighter : Delighter
+        -helpDelighter : Delighter
+        -trialCheckListDelighter : Delighter
+        -backToSearchResults : Button
+
+       +getCriteriaSection(): CriteriaSection
+       +getStartOverLink(): Link
+       +getTrialStatus(): String
+       +getOpenAllButton(): Button
+       +getCloseAllButton(): Button
+       +getAccordion(): Accordion
+       +getShareDelighter(): Delighter
+       +getHelpDelighter(): Delighter
+       +getTrialChecklistDelighter(): Delighter
+       +getBackToSearchResults(): Button
 
     }
     cts.TrialDetailsPage <|-- CTSPage
-
 
     class cts.SearchNavigationResult {
         +cts.SearchNavigationResult(browser: WebDriver)
@@ -74,17 +132,16 @@ package cts {
         +getZipParameter(): string
         +getKeywordParameter(): string
         +getCancerType(): string[]
-        +getResultListType(): int
+        +getResultListCount(): int
     }
 
 }
 
 cts.SearchNavigationResult <|-- NavigationResult
 
-
 class NavigationResult {
     +NavigationResult(browser: WebDriver)
- 
+
     +getPageUrl(): ParsedURL
     +getParameterValue(name: string): string
 }
