@@ -1,0 +1,107 @@
+@startuml
+
+'' Cancer type and subtype selection.
+class cts.components.CancerTypeSection {
+'' Cancer type - advanced search
+    +getType(): FieldTypeTBD
+    +getSubType(): Autosuggest
+    +getStage(): Autosuggest
+    +getSideEffects(): Autosuggest
+}
+note top: Top-level cancer type and subtype selection.
+
+'' Location -- advanced search
+class cts.components.LocationSection {
+    -limitResultsToggle : WebElement
+    -zipcodeRadioButton : RadioButton
+    -countryStateCityRadioButton : RadioButton
+    -hospitalsRadioButton : RadioButton
+
+    +getZipcodeRadioButton() : RadioButton
+    +getCountryStateCityRadioButton() : RadioButton
+    +getHospitalsRadioButton() : RadioButton
+    +limitToVAOnly(boolean value): void
+}
+note top: Top-level location
+
+'' Trial type section -- advanced search
+class cts.components.TrialTypeSection {
+    -limitResultsToggle : WebElement
+    -allCheckBox : CheckBox
+    -checkBoxLocator : String
+
+    +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
+    +getAllCheckBox() : CheckBox
+    +limitToHealthyVolunteers(boolean value): void
+}
+note top: Top-level trial type section
+
+'' Drugs/Treatment section -- advanced search
+class cts.components.DrugTreatmentSection {
+    -drug : Autosuggest
+    -treatment : Autosuggest
+
+    +getDrug(): AutoSuggest
+    +getTreatment(): Autosuggest
+}
+note top: Top-level Drugs/Treatment section
+
+
+'' Trial phase list section -- advanced search
+class cts.components.TrialPhaseSection {
+    -allChekbox : CheckBox
+    -checkBoxLocator : String
+
+    +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
+    +getAllCheckBox() : CheckBox
+}
+note top: Top-level Trial phase list section
+
+'' Trial ID section -- advanced search
+class cts.components.TrialIDSection {
+    -idText: TextField
+
+    +getTrialId() : Textfield
+    +getTrialPromptText(): BlobOfText
+}
+note top: Top-level Trial ID section
+
+'' Trial Investigators section -- advanced search
+class cts.components.InvestigatorsSection {
+    -investigators: AutoSuggest
+
+    +getInvestigators() : AutoSuggest
+    +getInvestigatorsPromptText(): BlobOfText
+}
+note top: Top-level Trial Investigators section
+
+'' Lead Organization section -- advanced search
+class cts.components.LeadOrganizationSection {
+    -organizations: AutoSuggest
+
+    +getOrganizations() : AutoSuggest
+    +getOrganizationsPromptText(): BlobOfText
+}
+note top: Top-level Lead Organization section
+
+'' Floating Find/Clear buttons -- advanced search
+class cts.components.FormAction {
+    -findTrialsButton : Button
+    -clearFormButton : Button
+
+    +getFindtrials (): Button
+    +getClearForm() : Button
+}
+note top: Top-level Floating Find/Clear buttons
+
+cts.components.CancerTypeSection <|-- Component
+cts.components.LocationSection <|-- Component
+cts.components.TrialTypeSection <|-- Component
+cts.components.DrugTreatmentSection <|-- Component
+cts.components.TrialPhaseSection <|-- Component
+cts.components.TrialIDSection <|-- Component
+cts.components.InvestigatorsSection <|-- Component
+cts.components.LeadOrganizationSection <|-- Component
+cts.components.FormAction <|-- Component
+
+@enduml

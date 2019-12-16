@@ -70,10 +70,10 @@ package cts {
         +getTrialTypeSection(): TrialTypeSection
         +getDrugTreatmentSection(): DrugTreatmentSection
         +getTrialPhaseSection(): TrialPhaseSection
-        +getTrialID(): TextField
-        +getTrialInvestigators(): Autosuggest
-        +getLeadOrganization(): Autosuggest
-        +getFormAction(): FormAction
+        +getTrialIDSection(): TrialIDSection
+        +getTrialInvestigatorsSection(): InvestigatorsSection
+        +getLeadOrganizationSection(): LeadOrganizationSection
+        +getFormActionSection(): FormAction
 
     }
     cts.AdvancedSearchPage <|-- CTSPage
@@ -111,16 +111,16 @@ package cts {
         -trialCheckListDelighter : Delighter
         -backToSearchResults : Button
 
-       +getCriteriaSection(): CriteriaSection
-       +getStartOverLink(): Link
-       +getTrialStatus(): String
-       +getOpenAllButton(): Button
-       +getCloseAllButton(): Button
-       +getAccordion(): Accordion
-       +getShareDelighter(): Delighter
-       +getHelpDelighter(): Delighter
-       +getTrialChecklistDelighter(): Delighter
-       +getBackToSearchResults(): Button
+        +getCriteriaSection(): CriteriaSection
+        +getStartOverLink(): Link
+        +getTrialStatus(): String
+        +getOpenAllButton(): Button
+        +getCloseAllButton(): Button
+        +getAccordion(): Accordion
+        +getShareDelighter(): Delighter
+        +getHelpDelighter(): Delighter
+        +getTrialChecklistDelighter(): Delighter
+        +getBackToSearchResults(): Button
 
     }
     cts.TrialDetailsPage <|-- CTSPage

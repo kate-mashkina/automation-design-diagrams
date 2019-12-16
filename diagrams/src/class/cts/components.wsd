@@ -1,80 +1,22 @@
 @startuml
 
-'' Cancer type - advanced search
-class cts.components.CancerTypeSection {
-    +getType(): FieldTypeTBD
-    +getSubType(): Autosuggest
-    +getStage(): Autosuggest
-    +getSideEffects(): Autosuggest
-}
-
 '' Criteria display - search results and trial description
 class cts.components.CriteriaSection {
-    +cts.components.CriteriaSection(element : WebElement)
+    +CriteriaSection(element : WebElement)
     +add(label: String, value: String)
     +getCriterion(label: String) : String
 }
+note top: Criteria display - search results and trial description
 
-'' Drugs/Treatment section -- advanced search
-class cts.components.DrugTreatmentSection {
-    -drug : Autosuggest
-    -treatment : Autosuggest
-
-    +getDrug(): AutoSuggest
-    +getTreatment(): Autosuggest
-
-}
-
-'' Location -- advanced search
-class cts.components.LocationSection {
-    -limitResultsToggle : WebElement
-    -zipcodeRadioButton : RadioButton
-    -countryStateCityRadioButton : RadioButton
-    -hospitalsRadioButton : RadioButton
-
-    +getZipcodeRadioButton() : RadioButton
-    +getCountryStateCityRadioButton() : RadioButton
-    +getHospitalsRadioButton() : RadioButton
-    +switchToggle()
-
-}
-
-'' Floating Find/Clear buttons -- advanced search
-class cts.components.FormAction {
-    -findTrialsButton : Button
-    -clearFormButton : Button
-
-    +getFindtrials (): Button
-    +getClearForm() : Button
-}
-
-'' Trial phase list section -- advanced search
-class cts.components.TrialPhaseSection {
-    -allChekbox : CheckBox
-    -checkBoxLocator : String
-
-    +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
-    +getAllCheckBox() : CheckBox
-}
-
-'' Trial type section -- advanced search
-class cts.components.TrialTypeSection {
-    -limitResultsToggle : WebElement
-    -allCheckBox : CheckBox
-    -checkBoxLocator : String
-
-    +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
-    +getAllCheckBox() : CheckBox
-
-}
 
 '' Search results list -- search results page
 class cts.components.ResultListSection {
     -resultItemLocator : String
 
-     +getAllResultItems() : List <ResultItem> allResults
-
+    +getAllResultItems() : List <ResultItem> allResults
 }
+note top: Search results list -- search results page
+
 
 '' Single search result item -- search results page
 class cts.components.ResultItem {
@@ -84,16 +26,12 @@ class cts.components.ResultItem {
 
     +getTitleLink(): Link
     +getCheckBox() : CheckBox
-    +getBlobOfText : BlobOfText
+    +getBlobOfText() : BlobOfText
 }
+note top: Single search result item -- search results page
 
-cts.components.CancerTypeSection <|-- Component
+
 cts.components.CriteriaSection <|-- Component
-cts.components.DrugTreatmentSection <|-- Component
-cts.components.LocationSection <|-- Component
-cts.components.FormAction <|-- Component
-cts.components.TrialPhaseSection <|-- Component
-cts.components.TrialTypeSection <|-- Component
 cts.components.ResultListSection <|-- Component
 cts.components.ResultItem <|-- Component
 
