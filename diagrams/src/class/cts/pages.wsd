@@ -25,7 +25,18 @@ package cts {
 
     '' General cts page functionality (Mainly "is the react app running?")
     class CTSPage {
-        isHeaderDisplayed(): boolean
+        - helpDelighter : Delighter
+        - trialCheckListDelighter : Delighter
+        - whatAreClinicalTrialsDelighter : Delighter
+        +isHeaderDisplayed(): boolean
+        +clickSubmit() : SearchNavigationResult
+        +hitEnterKey() : SearchNavigationResult
+        + getHelpDelighter() : Delighter
+        + getTrialCheckListDelighter() : Delighter
+        + getWhatAreClinicalTrialsDelighter() : Delighter
+
+
+
     }
     CTSPage <|-- PageObjectBase
 
@@ -52,20 +63,20 @@ package cts {
 
     class cts.AdvancedSearchPage {
         - cancerTypeSection : CancerTypeSection
-        - age : TextField
-        - keyword : TextField
+        - ageSection : AgeSection
+        - keywordPhrasesSection : KeywordsPhrasesSection
         - locationSection : LocationSection
         - trialTypeSection : TrialTypeSection
         - trialPhaseSection : TrialPhaseSection
         - drugTreatmentSection : DrugTreatmentSection
-        - trialId : TextField
-        - trialInvestigators : Autosuggest
-        - leadOrganization : Autosuggest
+        - trialId : TrialIDSection
+        - trialInvestigators : InvestigatorsSection
+        - leadOrganization : LeadOrganizationSection
         - formAction : FormAction
 
         +getCancerTypeSection(): CancerTypeSection
-        +getAgeField(): TextField
-        +getKeywordField(): TextField
+        +getAge(): AgeSection
+        +getKeywordPhrase(): KeywordsPhrasesSection
         +getLocationSection(): LocationSection
         +getTrialTypeSection(): TrialTypeSection
         +getDrugTreatmentSection(): DrugTreatmentSection
@@ -94,8 +105,6 @@ package cts {
         +getSelectAllOnPage(): CheckBox
         +getPrintSelected(): Button
         +getPager(): Pager
-
-
     }
     cts.SearchResultsPage <|-- CTSPage
 
@@ -107,9 +116,7 @@ package cts {
         -closeAll : Button
         -accordion : Accordion
         -shareDelighter : Delighter
-        -helpDelighter : Delighter
-        -trialCheckListDelighter : Delighter
-        -backToSearchResults : Button
+        -backToSearch: Button
 
         +getCriteriaSection(): CriteriaSection
         +getStartOverLink(): Link
@@ -118,8 +125,6 @@ package cts {
         +getCloseAllButton(): Button
         +getAccordion(): Accordion
         +getShareDelighter(): Delighter
-        +getHelpDelighter(): Delighter
-        +getTrialChecklistDelighter(): Delighter
         +getBackToSearchResults(): Button
 
     }

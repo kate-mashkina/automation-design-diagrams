@@ -30,7 +30,36 @@ class cts.components.ResultItem {
 }
 note top: Single search result item -- search results page
 
+class cts.components.AccordionItem {
+    -title : WebElement
+    
+    #getTitle()
+    #getField(name : String)
+    #isExpanded() : boolean
+}
+note top: Single accordion item --  abstract factory class that builds different type of accordion
 
+class cts.components.Accordion {
+-sections : List<AccordionItem>
+- titles : List<WebElement>
+- bodies : List<WebElement>
+
++Accordion (element : WebElement)
+
++get (index : int): AccordionItem
+}
+note top: Accordion  -- contains List<AccordionItem> to retrieve all items and getItem to retrive individual accordion item
+
+class cts.components.ErrorDisplay{
+- alert : WebElement
+
++ErrorDisplay (scope Webelement)
+
++getMessage() : String
+}
+cts.components.ErrorDisplay <|-- Component
+cts.components.AccordionItem <|-- Component
+cts.components.Accordion <|-- Component
 cts.components.CriteriaSection <|-- Component
 cts.components.ResultListSection <|-- Component
 cts.components.ResultItem <|-- Component

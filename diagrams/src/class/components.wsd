@@ -3,6 +3,12 @@
 class Component{
     +isVisible(): boolean
 }
+class AutoSuggestField {
+    - autoSuggestHelper : AutoSuggestHelper
+
+    + selectItem(text : String) : void
+}
+AutoSuggestField <|-- TextField
 
 class CGovField {
 
@@ -10,6 +16,7 @@ class CGovField {
 
     +CGovField(field WebElement)
     +setFocus(): void
+    +setFocusAway(): void
 }
 CGovField <|-- Component
 
@@ -24,7 +31,7 @@ TextField <|-- CGovField
 class CheckBox {
     +CheckBox(field WebElement)
 
-    +click(): void
+    +toggle(): void
     +isSelected(): boolean
 }
 CheckBox <|-- CGovField
@@ -39,25 +46,17 @@ Button <|-- CGovField
 class RadioButton {
     +radioButton(field WebElement)
 
-    click(): void
+    +select(): void
+    +isSelected() : boolean
 }
 RadioButton <|-- CGovField
 
-class AutoSuggestField {
-    +AutoSuggestField(field WebElement)
-
-    +selectItem(text: string): void
-}
-AutoSuggestField <|-- TextField
-
-class Accordian {
-    +getTitle() : String
-    +getDecription() : BlobOfText
-    +isExpanded() : boolean
-}
-Accordian <|-- Component
 
 class Delighter {
+- delighterLink : Link
+- title : WebElement
+- delighter : WebElement
+
 +isIconDisplayed() : boolean
 +getLinkTitle() : String
 +getLink() : Link
@@ -65,16 +64,16 @@ class Delighter {
 }
 Delighter <|-- Component
 
-class ErrorDisplay{
-+ErrorDisplay (scope Webelement)
-
-+getMessage() : String
-}
-ErrorDisplay <|-- Component
-
 class Pager{
+- pagerButtons : List<Button>
+- previousButton : Button
+- nextButton : Button
 
 +getNumberOfPages() : int
++getPageButton(index : int) : Button
++ getPreviousButton() : Button
++ getNextButton() : Button
+
 
 }
 Pager <|-- Component

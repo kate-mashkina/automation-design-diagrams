@@ -1,0 +1,87 @@
+@startuml
+'' all accordion sections
+class cts.components.accordion_items.Description{
+    - title : WebElement
+    - body : WebElement
+    - descriptionBody : BlobOfText
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.Description <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.EligibilityCriteria{
+    - title : WebElement
+    - body : WebElement
+    - descriptionBody : BlobOfText
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.EligibilityCriteria <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.LeadOrganization{
+    - title : WebElement
+    - body : WebElement
+    - fields : Map<String, String>
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.LeadOrganization <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.LocationAndContacts{
+    - title : WebElement
+    - body : WebElement
+
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.LocationAndContacts <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.TrialIDs{
+    - title : WebElement
+    - body : WebElement
+    - fields : Map<String, String>
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.TrialIDs <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.TrialObjectivesAndOutline{
+    - title : WebElement
+    - body : WebElement
+    - objectives : BlobOfText
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.TrialObjectivesAndOutline <-- cts.components.AccordionItem
+
+class cts.components.accordion_items.TrialPhaseAndType{
+    - title : WebElement
+    - body : WebElement
+    - fields : Map<String, String>
+
+    +isExpanded() : Boolean
+    +getTitle() : String
+    +getField(field : String) : String 
+}
+cts.components.accordion_items.TrialPhaseAndType <-- cts.components.AccordionItem
+
+class cts.components.AccordionItem {
+     -title : WebElement
+    
+    #getTitle()
+    #getField(name : String)
+    #isExpanded() : boolean
+}
+@enduml

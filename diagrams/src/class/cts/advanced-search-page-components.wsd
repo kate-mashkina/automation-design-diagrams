@@ -1,12 +1,40 @@
 @startuml
 
 '' Cancer type and subtype selection.
+class cts.components.AgeSection {
+    -section : WebElement
+    - age : TextField
+    - title : WebElement
+    - helptext : WebElement
+    - helpLink : Link
+
+    + AgeSection (element : WebElement)
+    + getAge () : TextField
+    + getHelpLink () : Link
+    + getTitle () : String
+    + getHelpText () : String
+    + getErrorDisplay () : ErrorDisplay 
+
+}
 class cts.components.CancerTypeSection {
 '' Cancer type - advanced search
-    +getType(): FieldTypeTBD
-    +getSubType(): Autosuggest
-    +getStage(): Autosuggest
-    +getSideEffects(): Autosuggest
+    - all : Button
+    - cancerTypeCondition : AutoSuggestField
+    - subType : AutoSuggestField
+    - stage : AutoSuggestField
+    - sideEffects : AutoSuggestField
+    - helpLink : Link
+    - driver : WebDriver
+
+
+    
+    +getSubType(): AutoSuggestField
+    +getCancerTypeCondition(): AutoSuggestField
+    +getStage(): AutoSuggestField
+    +getSideEffects(): AutoSuggestField
+    +getAllButton : Button
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level cancer type and subtype selection.
 
@@ -16,11 +44,16 @@ class cts.components.LocationSection {
     -zipcodeRadioButton : RadioButton
     -countryStateCityRadioButton : RadioButton
     -hospitalsRadioButton : RadioButton
+    -atNIHRadioButton : RadioButton
+    - title : WebElement
+    - helpLink : Link
 
     +getZipcodeRadioButton() : RadioButton
     +getCountryStateCityRadioButton() : RadioButton
     +getHospitalsRadioButton() : RadioButton
     +limitToVAOnly(boolean value): void
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level location
 
@@ -29,20 +62,28 @@ class cts.components.TrialTypeSection {
     -limitResultsToggle : WebElement
     -allCheckBox : CheckBox
     -checkBoxLocator : String
+    - helpLink : Link
+    - title : WebElement
 
     +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
     +getAllCheckBox() : CheckBox
     +limitToHealthyVolunteers(boolean value): void
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level trial type section
 
 '' Drugs/Treatment section -- advanced search
 class cts.components.DrugTreatmentSection {
-    -drug : Autosuggest
-    -treatment : Autosuggest
+    -drug : AutoSuggestField
+    -treatment : AutoSuggestField
+    - helpLink : Link
+    - title : WebElement
 
-    +getDrug(): AutoSuggest
-    +getTreatment(): Autosuggest
+    +getDrug(): AutoSuggestField
+    +getTreatment(): AutoSuggestField
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level Drugs/Treatment section
 
@@ -51,36 +92,53 @@ note top: Top-level Drugs/Treatment section
 class cts.components.TrialPhaseSection {
     -allChekbox : CheckBox
     -checkBoxLocator : String
+    - helpLink : Link
+    - title : WebElement
 
     +getAllOptionsCheckBoxes() : List <CheckBox> allOptions
     +getAllCheckBox() : CheckBox
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level Trial phase list section
 
 '' Trial ID section -- advanced search
 class cts.components.TrialIDSection {
     -idText: TextField
+    - helpLink : Link
+    - title : WebElement
 
     +getTrialId() : Textfield
-    +getTrialPromptText(): BlobOfText
+    +getHelpLink () : Link
+    +getTitle () : String
 }
 note top: Top-level Trial ID section
 
 '' Trial Investigators section -- advanced search
 class cts.components.InvestigatorsSection {
-    -investigators: AutoSuggest
+    -investigators: AutoSuggestField
+    - helpLink : Link
+    - title : WebElement
 
-    +getInvestigators() : AutoSuggest
-    +getInvestigatorsPromptText(): BlobOfText
+    +getHelpLink () : Link
+    +getTitle () : String
+    +getInvestigators() : AutoSuggestField
+    
 }
 note top: Top-level Trial Investigators section
 
 '' Lead Organization section -- advanced search
 class cts.components.LeadOrganizationSection {
-    -organizations: AutoSuggest
+-organizations: AutoSuggestField
+- title : WebElement
+- helptext : WebElement
+- helpLink : Link
 
-    +getOrganizations() : AutoSuggest
-    +getOrganizationsPromptText(): BlobOfText
++ getHelpLink () : Link
++ getTitle () : String
++ getHelpText () : String
++getOrganizations() : AutoSuggestField
+  
 }
 note top: Top-level Lead Organization section
 
@@ -94,6 +152,21 @@ class cts.components.FormAction {
 }
 note top: Top-level Floating Find/Clear buttons
 
+class cts.components.KewordsPhrasesSection {
+- section : WebElement
+- keyWordsPrases : TextField
+- title : WebElement
+- helptext : WebElement
+- helpLink : Link
+
++ getHelpLink () : Link
++ getTitle () : String
++ getHelpText () : String
++ getKeywordsPhrases () : TextField
+}
+
+cts.components.KewordsPhrasesSection <|-- Component
+cts.components.AgeSection <|-- Component
 cts.components.CancerTypeSection <|-- Component
 cts.components.LocationSection <|-- Component
 cts.components.TrialTypeSection <|-- Component
