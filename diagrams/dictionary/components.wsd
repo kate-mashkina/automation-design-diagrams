@@ -1,0 +1,65 @@
+@startuml
+class Component{
+    +isVisible(): boolean
+}
+package dictionary {
+package components {
+    class SearchSection {
+        -startsWith : RadioButton
+        -contains : RadioButton
+        -keywordField : TextField
+        -search : Button
+        -keywordAutoSuggest : AutoSuggestField
+
+        +getStartsWith() : RadioButton
+        +getContains() : RadioButton
+        +getKeywordField() : TextField
+        +getSearchButton() : Button
+        +getAutoSuggest() : AutoSuggestField
+
+    }
+    SearchSection <-- Component
+
+    class BrowseSection {
+        options : List <Link>
+
+        +getOptions() : List<Link>
+
+    }
+    BrowseSection <-- Component
+
+    class ResultsSection {
+        -title : WebElement
+      -results : List<ResultItem>
+
+      +getTitle() : String
+      +getResults() : List<ResultItem>
+
+    }
+    ResultsSection <-- Component
+    class ResultItem {
+        -titleLink : Link
+        -definition : BlobOfText
+        -pronunciation : Pronunciation
+
+        +getTitleLink() : Link
+        +getDefinition() : BlobOfText
+        +getPronunciation() : Pronunciation
+
+
+
+    }
+    ResultItem <-- Component
+
+    class Pronunciation {
+        -icon : WebElement
+        
+
+        +getAudioFilePath() : String
+        +getTranscription() : String
+    }
+    Pronunciation <-- Component
+}
+}
+
+@enduml

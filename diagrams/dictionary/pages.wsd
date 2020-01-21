@@ -1,0 +1,62 @@
+@startuml
+class PageObjectBase {
+
+    -browser: WebDriver
+    -config: Confguration
+    -wait: WebDriverWait
+
+    +PageObjectBase(path: string)
+    #PageObjectBase()
+
+    +getPageUrl(): ParsedURL
+    +getPageTitle(): string
+    +expectUrlChange(IPageChangeAction action): void
+
+    #getBrowser(): WebDriver
+}
+
+package dictionary {
+    class GeneticTerms {
+       -editorialBoard : Link
+       -informationSummary : Link
+
+       +getEditoriaBoard() : Link
+       +getInformationsSummary() : Link
+    }
+    GeneticTerms <-- DictionaryPage
+
+    class DrugDictionary{
+        -helpLink : Link
+
+        +getHelpLink() : Link
+    }
+    DrugDictionary <-- DictionaryPage
+
+    class CancerTerms{
+      -widget : Link
+
+      +getWidget(): Link
+    }
+    CancerTerms <-- DictionaryPage
+    
+    class DictionaryPage{
+        -introText : BlobOfText
+        -header : WebElement
+        -browseSection : BrowseSection
+        -searchSection : SearchSection
+        -resultsSections : ResultsSection
+        -leftNavMenu : LeftNav
+
+        +getIntroText() : BlobOfText
+        +getHeader() : String
+        +getBrowseSection() : BrowseSection
+        +getSearchSection() : SearchSection
+        +getResultsSection() : ResultsSection 
+        +getLeftNavMenu() : LeftNav
+
+
+
+    }
+    DictionaryPage <-- PageObjectBase
+}
+@enduml
